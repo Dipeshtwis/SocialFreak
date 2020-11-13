@@ -16,9 +16,16 @@
       <%= link_to 'Social Freak', root_path, class: 'navbar-brand' %>
     </div>
     <div id="navbar">
-      <ul class="nav navbar-nav">
-        <li><%= link_to 'Twitter', '/auth/twitter' %></li>
-      </ul>
+      <% if current_user %>
+        <ul class="nav navbar-nav pull-right">
+          <li><%= image_tag current_user.image_url, alt: current_user.name %></li>
+          <li><%= link_to 'Log Out', logout_path, method: :delete %></li>
+        </ul>
+      <% else %>
+        <ul class="nav navbar-nav">
+          <li><%= link_to 'Twitter', '/auth/twitter' %></li>
+        </ul>
+      <% end %>
     </div>
   </div>
 </nav>
